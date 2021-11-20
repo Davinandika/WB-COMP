@@ -1,3 +1,2 @@
 # i-comp
-web and python
-hello
+Repo create by HD-TR4nt
