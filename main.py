@@ -1,12 +1,33 @@
-from flask import Flask, render_template
+from datetime import datetime
+from flask import Flask, render_template, request, redirect
+import mysql.connector
 
+config = mysql.connector.connect(
+    host="192.168.100.10",
+    user="root",
+    port="80",
+    password="2wsx1qaz",
+    database="scrapy"
+)
+cursor = config.cursor()
+if config.is_connected():
+    print("koneksi berhasil")
+
+date = datetime.now()
+
+# print(date.strftime("%Y-%M-%d"))
 app = Flask(__name__)
+
+
 @app.route('/')
-@app.route('/list')
+def index():
+    return redirect('/list')
 
-def list():
-    return render_template('list-laptop.html')
-
-
-if __name__ == '__main__':
-    app.run()
+@app.route('/list', methods=["POST","GET"])
+def add():
+    if request.method == "GET":
+        cursor = config.cursor()
+        sql = "SELECT * FROM tbl_barang"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        return render_template('list-laptop.html', results =results )

@@ -7,6 +7,34 @@
     <title>Laptop</title>
 </head>
 <body>
-    <h1>hei</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Laptop
+                </th>
+                <th>
+                    Harga
+                </th>
+                <th>
+                    Waktu scrap
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in results %}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
