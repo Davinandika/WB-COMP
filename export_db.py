@@ -32,11 +32,10 @@ if __name__ == '__main__':
 # print(img[2])
 
 config = mysql.connector.connect(
-    host="192.168.100.10",
-    user="root",
-    port="80",
-    password="2wsx1qaz",
-    database="scrapy"
+    host ="localhost",
+	user ="root",
+	password="",
+	database="db_scrapy"
 )
 # config = sqlite3.connect("db_scrapy.sql")
 
