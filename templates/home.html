@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2B2D42;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="" width="60" height="24" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active">About Us</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <a class="navbar-brand" href="#">
+            <img src="{{ url_for('static', filename='fontawesome/svgs/solid/user.svg') }}" alt="" width="50" height="24" class="d-inline-block align-text-top">
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div style="display: flex; justify-content: center; margin: 20px;">
+      <h2 style="margin-right: 200px; font-size: 50px;">Compare</h2>
+      <div class="input-group mb-3" style="margin-top: 20px;">
+        <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="background-color: #8D99AE; color: white;">Search</button>
+      </div>  
+    </div>
+    <div>
+      <div class="card" style="width: 18rem;">
+        <img src="{{ url_for('static', filename='img') }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Compare</a>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
