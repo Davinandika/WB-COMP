@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect
 import mysql.connector
 
 config = mysql.connector.connect(
-    host="192.168.204.94",
+    host="192.168.100.10",
     user="root",
     port="80",
     password="2wsx1qaz",
@@ -30,4 +30,4 @@ def add():
         sql = "SELECT * FROM tbl_barang"
         cursor.execute(sql)
         results = cursor.fetchall()
-        return render_template('list-laptop.html', results =results )
+        return render_template('home.html', results =results )
