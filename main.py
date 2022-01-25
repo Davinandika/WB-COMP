@@ -29,4 +29,4 @@ def add():
         sql = "SELECT * FROM tbl_barang"
         cursor.execute(sql)
         results = cursor.fetchall()
-        return render_template('home.html', results =results )
+        return render_template('compare.html', results =results )
