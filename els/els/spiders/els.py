@@ -19,8 +19,10 @@ class ElsSpider(scrapy.Spider):
         laptop = response.css(".product-item-details .product-item-link::text").getall()
         harga = response.css(".product-item-details .price::text").getall()
         gambar = response.css(".product-item-info .product-image-photo").xpath("@src").getall()
+        link = response.css(".product-item-details .product-item-link").xpath("@href").getall()
         items['laptop'] = laptop
         items['harga'] = harga
         items['gambar'] = gambar
+        items['link'] = link
         # items['date'] = datetime.now()
         yield items

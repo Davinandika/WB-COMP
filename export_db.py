@@ -1,6 +1,8 @@
 import json, datetime, mysql.connector
 
-with open(f'els-25-01-2022.json', 'r', encoding="utf-8") as get:
+file = str(input("Masukan nama file anda: "))
+
+with open(f'{file}.json', 'r', encoding="utf-8") as get:
     data = json.load(get)
     # print(data)
 
@@ -21,6 +23,7 @@ if __name__ == '__main__':
     get_laptop = parsingData(data, 'laptop')
     get_harga = parsingData(data, 'harga')
     get_foto = parsingData(data, 'gambar')
+    get_link = parsingData(data, 'link')
 
 
 # # print(get_id[0])
@@ -32,10 +35,11 @@ if __name__ == '__main__':
 # print(img[2])
 
 config = mysql.connector.connect(
-    host ="localhost",
+    host ="192.168.100.10",
 	user ="root",
-	password="",
-	database="db_scrapy"
+	password="2wsx1qaz",
+    port ="80",
+	database="scrapy"
 )
 # config = sqlite3.connect("db_scrapy.sql")
 
@@ -49,7 +53,7 @@ date = datetime.datetime.now()
 # create table
 try:
     cursor = config.cursor()
-    table = f"CREATE TABLE tbl_barang (`id` INT NOT NULL AUTO_INCREMENT,	`laptop` TEXT NOT NULL,	`harga` TEXT NOT NULL,	`foto` TEXT NOT NULL, `tanggal` DATETIME NULL DEFAULT NULL, PRIMARY KEY (`id`))"
+    table = f"CREATE TABLE tbl_barang (`id` INT NOT NULL AUTO_INCREMENT,	`laptop` TEXT NOT NULL,	`harga` TEXT NOT NULL,	`foto` TEXT NOT NULL, `link` TEXT NOT NULL, `tanggal` DATETIME NULL DEFAULT NULL, PRIMARY KEY (`id`))"
     cursor.execute(table)
 except mysql.connector.errors.ProgrammingError:
     print("database sudah ada")
@@ -62,19 +66,21 @@ repeat_c = len(get_laptop[repeat_a])
 
 try:
     while repeat_a <= id:
-        laptop = get_laptop[repeat_a]
-        harga = get_harga[repeat_a]
-        foto = get_foto[repeat_a]
+        laptop = get_laptop[4]
+        harga = get_harga[4]
+        foto = get_foto[4]
+        link = get_link[4]
         id_a = len(laptop)
         repeat_b = 0
         while repeat_b <= repeat_c:
             laptop_b = laptop[repeat_b]
             harga_b = harga[repeat_b]
             foto_b = foto[repeat_b]
+            link_b = link[repeat_b]
             cursor = config.cursor()
             tanggal = date
-            sql = "INSERT INTO tbl_barang (laptop, harga, foto, tanggal) VALUES (%s,%s,%s,%s)"
-            val = (laptop_b, harga_b, foto_b, tanggal)
+            sql = "INSERT INTO tbl_barang (laptop, harga, foto, link, tanggal) VALUES (%s,%s,%s,%s,%s)"
+            val = (laptop_b, harga_b, foto_b,link_b, tanggal)
             cursor.execute(sql,val)
             config.commit()
             print("data berhasil disimpan")

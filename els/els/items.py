@@ -11,4 +11,5 @@ class ElsItem(scrapy.Item):
     laptop = scrapy.Field()
     harga = scrapy.Field()
     gambar = scrapy.Field()
+    link = scrapy.Field()
     pass

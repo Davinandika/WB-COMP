@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block judul %} Komparasi Laptop {% endblock %}  
+
+{% block konten %}
+{% for  row in results %}
+    <div class="card text-center">
+        <div class="card-header">
+        LAPTOP
+        </div>
+        <div class="card-body">
+            <img src="{{row.3}}" class="card-img-top" alt="{{row.1}}">
+            <h5 class="card-title">{{row.1}}</h5>
+            <div>
+                <img src="{{ url_for('static', filename='svg/logo_toko/ELS.ID_Logo_Horizontal_.png') }}" alt=""  class="d-inline-block align-text-top">
+                <p class="card-text">{{row.2}} <a href={{row.4}} class="btn btn-primary">Go To Store</a> </p> 
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+        data diambil pada tanggal {{row.5}}
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

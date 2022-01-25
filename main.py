@@ -3,10 +3,11 @@ from flask import Flask, render_template, request, redirect
 import mysql.connector
 
 config = mysql.connector.connect(
-    host ="localhost",
+    host ="192.168.100.10",
 	user ="root",
-	password="",
-	database="db_scrapy"
+	password="2wsx1qaz",
+    port = "80",
+	database="scrapy"
 )
 cursor = config.cursor()
 if config.is_connected():
@@ -18,15 +19,20 @@ date = datetime.now()
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/',methods=["POST","GET"])
 def index():
-    return redirect('/list')
-
-@app.route('/list', methods=["POST","GET"])
-def add():
     if request.method == "GET":
         cursor = config.cursor()
         sql = "SELECT * FROM tbl_barang"
         cursor.execute(sql)
         results = cursor.fetchall()
         return render_template('home.html', results =results )
+    # return redirect('/list')
+
+@app.route("/compare/<id>", methods=["POST","GET"])
+def detail(id):
+    cursor = config.cursor()
+    cursor.execute('select * from tbl_barang where id=%s', (id,))
+    results = cursor.fetchall()
+    cursor.close()
+    return render_template('compare.html', results=results)
