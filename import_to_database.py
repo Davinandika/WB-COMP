@@ -25,6 +25,11 @@ if __name__ == '__main__':
     get_foto = parsingData(data, 'gambar')
     get_link = parsingData(data, 'link')
 
+host_db = input("masukan ip address database:   ")
+port_db = input("masukan port database: ")
+user_db = input("masukan username database: ")
+password_db = input("masukan password database: ")
+database_db = input("masukan nama database: ")
 
 # # print(get_id[0])
 # laptop = get_laptop[3]
@@ -35,10 +40,11 @@ if __name__ == '__main__':
 # print(img[2])
 
 config = mysql.connector.connect(
-    host ="localhost",
-	user ="root",
-	password="",
-	database="db_scrapy"
+    host = host_db,
+    port = port_db,
+	user =user_db,
+	password=password_db,
+	database=database_db
 )
 # config = sqlite3.connect("db_scrapy.sql")
 
@@ -49,6 +55,7 @@ if config.is_connected():
     print("===================")
 
 date = datetime.datetime.now()
+now = date.strftime("%Y-%m-%d")
 # create table
 try:
     cursor = config.cursor()
@@ -65,10 +72,10 @@ repeat_c = len(get_laptop[repeat_a])
 
 try:
     while repeat_a <= id:
-        laptop = get_laptop[4]
-        harga = get_harga[4]
-        foto = get_foto[4]
-        link = get_link[4]
+        laptop = get_laptop[1]
+        harga = get_harga[1]
+        foto = get_foto[1]
+        link = get_link[1]
         id_a = len(laptop)
         repeat_b = 0
         while repeat_b <= repeat_c:
@@ -77,7 +84,7 @@ try:
             foto_b = foto[repeat_b]
             link_b = link[repeat_b]
             cursor = config.cursor()
-            tanggal = date
+            tanggal = now
             sql = "INSERT INTO tbl_barang (laptop, harga, foto, link, tanggal) VALUES (%s,%s,%s,%s,%s)"
             val = (laptop_b, harga_b, foto_b,link_b, tanggal)
             cursor.execute(sql,val)
