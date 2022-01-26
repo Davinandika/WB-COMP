@@ -3,11 +3,10 @@ from flask import Flask, render_template, request, redirect
 import mysql.connector
 
 config = mysql.connector.connect(
-    host ="192.168.100.10",
+    host ="localhost",
 	user ="root",
-	password="2wsx1qaz",
-    port = "80",
-	database="scrapy"
+	password="",
+	database="db_scrapy"
 )
 cursor = config.cursor()
 if config.is_connected():
