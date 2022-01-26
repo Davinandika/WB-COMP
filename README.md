@@ -6,7 +6,6 @@ Membuat komparasi harga toko
 pip install -r requirements.txt
 cd els\els\spider
 scrapy crawl els
-
 ```
 
 ## Import to database

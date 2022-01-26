@@ -3,10 +3,11 @@ from flask import Flask, render_template, request, redirect
 import mysql.connector
 
 config = mysql.connector.connect(
-    host ="localhost",
+    host = "192.168.1.9",
+    port = "80",
 	user ="root",
-	password="",
-	database="db_scrapy"
+	password="2wsx1qaz",
+	database="scrapy"
 )
 cursor = config.cursor()
 if config.is_connected():
@@ -35,3 +36,7 @@ def detail(id):
     results = cursor.fetchall()
     cursor.close()
     return render_template('compare.html', results=results)
+
+@app.route("/shop")
+def shop():
+    return render_template('shop.html')
