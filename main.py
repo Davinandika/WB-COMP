@@ -18,7 +18,7 @@ date = datetime.now()
 # print(date.strftime("%Y-%M-%d"))
 app = Flask(__name__)
 
-
+# show index
 @app.route('/',methods=["POST","GET"])
 def index():
     if request.method == "GET":
@@ -27,8 +27,9 @@ def index():
         cursor.execute(sql)
         results = cursor.fetchall()
         return render_template('home.html', results =results )
-    # return redirect('/list')
 
+
+# show comparison price
 @app.route("/compare/<id>", methods=["POST","GET"])
 def detail(id):
     cursor = config.cursor()
@@ -37,6 +38,17 @@ def detail(id):
     cursor.close()
     return render_template('compare.html', results=results)
 
+#show shop in progress 
 @app.route("/shop")
 def shop():
     return render_template('shop.html')
+
+# show data for debug database
+@app.route("/list")
+def list():
+    cursor = config.cursor()
+    sql = "SELECT * FROM tbl_barang"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    cursor.close()
+    return render_template('list-laptop.html', results=results)
