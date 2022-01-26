@@ -3,21 +3,22 @@
 
 {% block konten %}
 {% for  row in results %}
-    <div class="card text-center">
-        <div class="card-header">
-        LAPTOP
-        </div>
-        <div class="card-body">
-            <img src="{{row.3}}" class="card-img-top" alt="{{row.1}}">
-            <h5 class="card-title">{{row.1}}</h5>
-            <div>
-                <img src="{{ url_for('static', filename='svg/logo_toko/ELS.ID_Logo_Horizontal_.png') }}" alt=""  class="d-inline-block align-text-top">
-                <p class="card-text">{{row.2}} <a href={{row.4}} class="btn btn-primary">Go To Store</a> </p> 
-            </div>
-        </div>
-        <div class="card-footer text-muted">
-        data diambil pada tanggal {{row.5}}
-        </div>
+    <div style="display: flex; justify-content: center; flex-direction: column; margin-top: 30px;">
+        <h1 style="text-align: center; margin-bottom: 30px;">{{row.1}}</h1>
+        <img src="{{row.3}}" alt="{{row.1}}" width="20%" style="align-self: center; margin-bottom: 50px;">
     </div>
+    <div style="display: flex; justify-content: space-between;">
+        <h3 style="margin-left: 35px;">shop</h3>
+        <h3 style="margin-right: 45%;">Price</h3>
+    </div>
+    <hr>
+    <div style="display: flex; justify-content: space-between;">
+        <img src="../static/svg/logo_toko/ELS.ID_Logo_Horizontal_.png" alt="" width="20%">
+        <h2 style="margin-top: 50px;">{{row.2}}</h2>
+        <p class="card-text"> <a class="btn btn-primary" style="margin-top: 50px; margin-right: 40px;" href="">Go To Store</a> </p> 
+    </div>
+    <footer>
+        <p style="text-align: center; background-color: #8D99AE;">Data diambil pada : {{row.5}}</p>
+    </footer>
 {% endfor %}
 {% endblock %}
